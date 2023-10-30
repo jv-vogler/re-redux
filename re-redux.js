@@ -1,4 +1,4 @@
-const createStore = (reducer, initialState) => {
+export const createStore = (reducer, initialState) => {
   let _state = initialState
   let _subscriptions = []
 
@@ -24,7 +24,7 @@ const createStore = (reducer, initialState) => {
   }
 }
 
-const combineReducers = (reducers) => {
+export const combineReducers = (reducers) => {
   return (state = {}, action) => {
     return Object.keys(reducers).reduce((acc, key) => {
       acc[key] = reducers[key](state[key], action)
@@ -33,3 +33,15 @@ const combineReducers = (reducers) => {
     }, {})
   }
 }
+
+export const replaceRelationById = (entityList, relation, idKey = "id") =>
+  entityList.map((entity) => ({
+    ...entity,
+    [relation]: entity[relation][idKey],
+  }))
+
+export const extractRelation = () => {}
+
+export const byId = (entityList, idKey = "id") => {}
+
+export const allIds = (entityList, idKey = "id") => {}
