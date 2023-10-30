@@ -40,7 +40,8 @@ export const replaceRelationById = (entityList, relation, idKey = "id") =>
     [relation]: entity[relation][idKey],
   }))
 
-export const extractRelation = () => {}
+export const extractRelation = (entityList, relation) =>
+  entityList.map((entity) => entity[relation])
 
 export const byId = (entityList, idKey = "id") => {}
 

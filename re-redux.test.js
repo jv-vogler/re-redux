@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { replaceRelationById } from "./re-redux"
-
+import { replaceRelationById, extractRelation } from "./re-redux"
 
 describe("Re-Redux", () => {
   const initialPosts = [
@@ -47,9 +46,33 @@ describe("Re-Redux", () => {
     },
   ]
 
+  const expectedAuthors = [
+    {
+      id: 1,
+      name: "Iago Dahlem Lorensini",
+      email: "iagodahlemlorensini@gmail.com",
+    },
+    {
+      id: 2,
+      name: "Talysson de Oliveira Cassiano",
+      email: "talyssonoc@gmail.com",
+    },
+    {
+      id: 1,
+      name: "Iago Dahlem Lorensini",
+      email: "iagodahlemlorensini@gmail.com",
+    },
+  ]
+
   describe("replaceRelationById", () => {
-    it("returns the correct data", () => {
+    it("replaces object by their keyId", () => {
       expect(replaceRelationById(initialPosts, "author", "id")).toStrictEqual(expectedPosts)
+    })
+  })
+
+  describe("extractRelation", () => {
+    it("returns the object by their keyId", () => {
+      expect(extractRelation(initialPosts, "author")).toStrictEqual(expectedAuthors)
     })
   })
 })
